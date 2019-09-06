@@ -24,5 +24,8 @@ function Tab(data) {
     let tab = document.createElement('div');
     tab.classList.add('tab');
     tab.textContent = data;
+
+    tab.addEventListener('click', event => {
+    })
     return tab
 }
