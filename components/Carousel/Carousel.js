@@ -17,3 +17,46 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+const carouselImages = ['mountains', 'turntable', 'computer', 'trees']
+let curCarouselIndex = 0;
+function createCarousel() {
+  let
+    wrapper = document.createElement('div'),
+    lBut = document.createElement('div'),
+    rBut = document.createElement('div'),
+    img = document.createElement('img');
+
+  wrapper.classList.add('carousel');
+  lBut.classList.add('left-button');
+  rBut.classList.add('right-button');
+
+  img.src = `./assets/carousel/${carouselImages[curCarouselIndex]}.jpeg`;
+
+  lBut.textContent = ' < ';
+  rBut.textContent = ' > ';
+
+  lBut.addEventListener('click', event => {
+    carouselLeft();
+  })
+
+  rBut.addEventListener('click', event => {
+    carouselRight();
+  })
+
+  wrapper.append(lBut, img, rBut);
+
+  return wrapper;
+}
+
+function carouselLeft() {
+  curCarouselIndex = (curCarouselIndex == 0) ? (carouselImages.length - 1) : (curCarouselIndex -= 1);
+  document.querySelector('.carousel img').src = `./assets/carousel/${carouselImages[curCarouselIndex]}.jpeg`;
+}
+
+function carouselRight() {
+  curCarouselIndex = (curCarouselIndex == (carouselImages.length - 1)) ? 0 : (curCarouselIndex += 1);
+  document.querySelector('.carousel img').src = `./assets/carousel/${carouselImages[curCarouselIndex]}.jpeg`;
+}
+
+document.querySelector('.carousel-container').appendChild(createCarousel());
